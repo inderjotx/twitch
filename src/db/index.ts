@@ -3,7 +3,7 @@ import postgres, { Sql } from 'postgres';
 import * as userSchema from "@/db/schema/users"
 
 
-const URL = process.env.DATABASE_URL || ""
+const URL = process.env.URL || ""
 
 declare global {
     var queryClient: Sql<{}> | null

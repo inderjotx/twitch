@@ -1,4 +1,4 @@
-import { auth, signOut } from '@/auth'
+import { auth, signIn, signOut } from '@/auth'
 import React from 'react'
 import { Button } from './button'
 import Link from 'next/link'
@@ -20,12 +20,15 @@ export async function Navbar() {
                             "use server"
                             await signOut()
                         }} >
-                            <Button type='submit' size={"sm"} >Sign Out </Button>
+                            <Button type='submit' size={"sm"} className='rounded-[20px] px-4' >Sign Out</Button>
                         </form>
                         :
-                        <Link href={'/signIn'} >
-                            <Button type='submit' size={"sm"} >Sign In</Button>
-                        </Link>
+                        <form action={async () => {
+                            "use server"
+                            await signIn()
+                        }} >
+                            <Button type='submit' size={"sm"} className='rounded-[20px] px-4' >Sign In</Button>
+                        </form>
                 }
             </div>
         </div>
