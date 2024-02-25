@@ -14,6 +14,13 @@ export const {
         clientSecret: process.env.GITHUB_CLIENT_SECRET,
     })],
     adapter: DrizzleAdapter(db),
+    callbacks: {
+        async session({ session, user }) {
+            session.user.id = user.id
+            return session;
+        },
+
+    }
     // pages: {
     //     signIn: "/signIn"
     // }

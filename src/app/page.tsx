@@ -6,7 +6,6 @@ export default async function Home() {
 
   return (
     <div className="">
-      something
       {session?.user?.name}
     </div>
 

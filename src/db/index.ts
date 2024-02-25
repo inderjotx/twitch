@@ -1,6 +1,7 @@
 import { drizzle } from 'drizzle-orm/postgres-js';
 import postgres, { Sql } from 'postgres';
 import * as userSchema from "@/db/schema/users"
+import { users } from '@/db/schema/users';
 
 
 const URL = process.env.URL || ""
@@ -20,3 +21,4 @@ export const db = drizzle(globalThis.queryClient || getClient(), { schema: { ...
 
 if (!globalThis.queryClient && process.env.NODE_ENV !== "production") globalThis.queryClient = postgres(URL)
 
+export type Users = typeof users.$inferInsert
