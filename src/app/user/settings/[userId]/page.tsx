@@ -2,7 +2,6 @@ import { db } from '@/db'
 import { redirect } from 'next/navigation'
 import React from 'react'
 
-
 import { Button } from "@/components/ui/button"
 import {
     Dialog,
@@ -18,6 +17,8 @@ import { Textarea } from '@/components/ui/textarea'
 import { X } from 'lucide-react'
 import Link from 'next/link'
 import { SubmitButton } from '@/components/SubmitButton'
+import { users } from '@/db/schema/users'
+import { eq } from 'drizzle-orm'
 
 
 export default async function page({ params }: {
@@ -57,9 +58,14 @@ export default async function page({ params }: {
                     const username = formData.get("username")
                     const bio = formData.get("bio")
 
-                    await db.update(user).set({ na:  })
-                }} >
 
+                    if (username && bio) {
+                        //@ts-ignore
+                        await db.update(users).set({ username: username, bio: bio }).where(eq(users.id, params.userId))
+                    }
+                }}
+
+                >
                     <div className="grid gap-4 py-4">
                         <div className="grid grid-cols-4 items-center gap-4">
                             <Label htmlFor="username" className="text-right">
@@ -67,7 +73,7 @@ export default async function page({ params }: {
                             </Label>
                             <Input
                                 id="username"
-                                defaultValue={user.username || "username"}
+                                defaultValue={user.username || ""}
                                 className="col-span-3"
                                 name="username"
                             />

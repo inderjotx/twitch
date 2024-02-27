@@ -3,6 +3,8 @@ import React from 'react'
 import { Button } from './button'
 import Link from 'next/link'
 import { UserProfileImage } from '../UserProfileImage'
+import { Ghost } from 'lucide-react'
+import { SearchBar } from '../SearchBar'
 
 export async function Navbar() {
 
@@ -10,13 +12,17 @@ export async function Navbar() {
     const isLoggedIn = session ? true : false
 
     return (
-        <div className='flex px-3 py-2 justify-between border-b border-black items-center
+        <div className='flex fixed top-0 w-full z-40 px-3 py-2 justify-between border-b border-black items-center
             mb-2
         '>
             <Link href={'/'} >
-                <div className='text-lg font-semibold'>Spooky</div>
+                <div className='text-lg flex items-center gap-1 font-semibold'>
+                    <Ghost />
+                    Spooky
+                </div>
             </Link>
-            <div>
+            <div className='flex gap-4'>
+                <SearchBar />
                 {
                     isLoggedIn ?
                         <div className='flex gap-2'>

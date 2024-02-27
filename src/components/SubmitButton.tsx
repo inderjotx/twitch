@@ -1,10 +1,21 @@
 'use client'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { useFormStatus } from 'react-dom'
 import { Button } from './ui/button'
+import toast from 'react-hot-toast'
 
 export function SubmitButton() {
     const { pending } = useFormStatus()
+    const [clicked, setClicket] = useState(false)
+
+
+    useEffect(() => {
+
+        if (!pending && clicked) {
+            toast.success("User Data Update Successfully")
+            setClicket(false)
+        }
+    }, [pending, clicked])
 
     return (
         <>
@@ -19,7 +30,7 @@ export function SubmitButton() {
                         </div>
                     </Button>
                     :
-                    <Button className='w-[140px]' size={"sm"} type="submit">Save Changes
+                    <Button onClick={() => setClicket(true)} className='w-[140px]' size={"sm"} type="submit">Save Changes
                     </Button>
             }
         </>

@@ -2,7 +2,8 @@ import type { Metadata } from "next";
 import { Inter, Poppins } from "next/font/google";
 import "./globals.css";
 import { Navbar } from "@/components/ui/Navbar";
-import { ThemeProvider } from "@/components/Providers/ThemeProvider";
+import { Toaster } from "react-hot-toast"
+// import { ThemeProvider } from "@/components/Providers/ThemeProvider";
 
 // const inter = Inter({ subsets: ["latin"] });
 const font = Poppins({
@@ -29,7 +30,7 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         > */}
-        <Navbar />
+        <Toaster />
         {children}
         {/* </ThemeProvider> */}
       </body>
