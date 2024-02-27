@@ -1,4 +1,4 @@
-import { db } from '@/db'
+import { User, db } from '@/db'
 import { redirect } from 'next/navigation'
 import React from 'react'
 
@@ -25,6 +25,11 @@ export default async function page({ params }: {
     params: { userId: string }
 }) {
 
+    if (!params.userId) {
+        redirect('/')
+        return
+    }
+
     const user = await db.query.users.findFirst({
         where(fields, operators) {
             return operators.eq(fields.id, params.userId)
@@ -34,8 +39,9 @@ export default async function page({ params }: {
 
     if (!user) {
         redirect('/')
-        return <></>
+        return
     }
+
 
     return (
         <Dialog open >

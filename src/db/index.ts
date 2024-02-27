@@ -21,4 +21,4 @@ export const db = drizzle(globalThis.queryClient || getClient(), { schema: { ...
 
 if (!globalThis.queryClient && process.env.NODE_ENV !== "production") globalThis.queryClient = postgres(URL)
 
-export type Users = typeof users.$inferInsert
+export type User = typeof users.$inferInsert

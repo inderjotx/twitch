@@ -39,11 +39,12 @@ export function SearchBar() {
                     value={value}
                     onChange={(e) => setValue(e.target.value)}
                     className='focus-visible:ring-offset-0 
-                focus-visible:ring-transparent
-            focus-visible::ring-0  
-
+                               focus-visible:ring-transparent
+                               focus-visible::ring-0  
+                               pr-8
             ' />
                 {
+                    value != "" &&
                     <X className='absolute right-10 size-4 text-muted-foreground' onClick={onClear} />
                 }
                 <SearchIcon className='size-6' />

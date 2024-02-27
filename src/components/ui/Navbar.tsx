@@ -18,7 +18,9 @@ export async function Navbar() {
             <Link href={'/'} >
                 <div className='text-lg flex items-center gap-1 font-semibold'>
                     <Ghost />
-                    Spooky
+                    <span className='hidden lg:block'>
+                        Spooky
+                    </span>
                 </div>
             </Link>
             <div className='flex gap-4'>
@@ -26,16 +28,10 @@ export async function Navbar() {
                 {
                     isLoggedIn ?
                         <div className='flex gap-2'>
-                            <Link href={`/user/settings/${session!.user!.id}`} >
+                            <Link href={`/user/${session!.user!.id}/`} >
                                 <UserProfileImage
                                     url={session?.user?.image || ""} username={session?.user?.name || "shad"}  ></UserProfileImage>
                             </Link>
-                            <form action={async () => {
-                                "use server"
-                                await signOut()
-                            }} >
-                                <Button type='submit' size={"sm"} className='rounded-[20px] px-4' >Sign Out</Button>
-                            </form>
                         </div>
                         :
                         <>
