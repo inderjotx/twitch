@@ -34,7 +34,7 @@ export function SearchBar() {
             onSubmit={handleSubmit}
         >
 
-            <div className='flex items-center relative gap-2'>
+            <div className='flex items-center relative gap-2 mx-1'>
                 <Input
                     value={value}
                     onChange={(e) => setValue(e.target.value)}
@@ -42,7 +42,12 @@ export function SearchBar() {
                                focus-visible:ring-transparent
                                focus-visible::ring-0  
                                pr-8
+                               w-full
+                               md:w-[260px]
+                               
+                              shrink 
             ' />
+
                 {
                     value != "" &&
                     <X className='absolute right-10 size-4 text-muted-foreground' onClick={onClear} />

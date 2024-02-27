@@ -11,7 +11,7 @@ export function UserProfileImage({ username, url, className }: {
     , className?: string
 }) {
     return (
-        <Avatar>
+        <Avatar className={className} >
             <AvatarImage className="" src={url} alt={"@" + username} />
             <AvatarFallback>{username.substring(0, 3)}</AvatarFallback>
         </Avatar>

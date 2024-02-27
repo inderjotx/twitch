@@ -64,7 +64,6 @@ export default async function page({ params }: {
                     const username = formData.get("username")
                     const bio = formData.get("bio")
 
-
                     if (username && bio) {
                         //@ts-ignore
                         await db.update(users).set({ username: username, bio: bio }).where(eq(users.id, params.userId))

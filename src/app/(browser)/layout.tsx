@@ -1,4 +1,5 @@
 import { Navbar } from '@/components/ui/Navbar'
+import { Sidebar } from "./_components/sidebar/index"
 import React from 'react'
 
 export default function layout({ children }: {
@@ -7,7 +8,8 @@ export default function layout({ children }: {
     return (
         <div>
             <Navbar />
-            <div className='h-full mt-20'>
+            <div className='relative h-full'>
+                <Sidebar />
                 {children}
             </div>
         </div>
