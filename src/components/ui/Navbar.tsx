@@ -14,8 +14,8 @@ export async function Navbar() {
     return (
         <div className='flex h-16 sticky top-0  w-full z-40 px-3 py-2 justify-between border-b border-black items-center
         '>
-            <Link href={'/'} >
-                <div className='text-lg flex items-center gap-1 font-semibold'>
+            <Link href={'/'} className='mx-3' >
+                <div className='text-lg  flex items-center gap-6 font-semibold'>
                     <Ghost />
                     <span className='hidden lg:block'>
                         Spooky
@@ -23,10 +23,10 @@ export async function Navbar() {
                 </div>
             </Link>
             <SearchBar />
-            <div className='flex gap-4 items-center '>
-                <div className='flex items-center gap-2 hover:text-foreground transition-all text-muted-foreground '>
-                    <ClapperboardIcon className='size-8' />
-                    <span className='lg:block hidden ' >Dashboard</span>
+            <div className='flex gap-4 ml-4 items-center '>
+                <div className='flex items-center gap-2  transition-all '>
+                    <ClapperboardIcon />
+                    <span className='lg:block hidden text-sm' >Dashboard</span>
                 </div>
                 {
                     isLoggedIn ?

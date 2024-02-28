@@ -3,6 +3,7 @@ import { cn } from '@/lib/utils'
 import { useSidebar } from '@/store/useSidebar'
 import React from 'react'
 import { ToggleControls } from './toggleControls'
+import { ContentWrapper } from './ContentWrapper'
 
 export function Wrapper({ children }: {
     children: React.ReactNode

@@ -15,12 +15,12 @@ export function ToggleControls() {
 
             {
                 isWrapped ?
-                    <MyToolTip tip={label} side='left' align='end' asChild={true} >
-                        <ArrowRightFromLine />
+                    <MyToolTip tip={label} side='left' align='center' asChild={true} >
+                        <ArrowRightFromLine className='size-5' />
                     </MyToolTip>
                     :
                     <MyToolTip tip={label} side='left' align='center' asChild={true} >
-                        <ArrowLeftFromLine />
+                        <ArrowLeftFromLine className='size-5' />
                     </MyToolTip>
             }
         </Button>

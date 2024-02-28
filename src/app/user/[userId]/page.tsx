@@ -71,6 +71,7 @@ export default async function User({ params }: { params: { userId: string } }) {
                     <form className="w-full" action={async () => {
                         "use server"
                         await db.delete(users).where(eq(users.id, params.userId))
+                        redirect('/')
                     }}  >
                         <Button className="w-full" variant={"destructive"} type="submit">Delete Account</Button>
                     </form>

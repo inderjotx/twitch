@@ -34,18 +34,15 @@ export function SearchBar() {
             onSubmit={handleSubmit}
         >
 
-            <div className='flex items-center relative gap-2 mx-1'>
+            <div className='flex md:max-w-[300px]  items-center relative gap-2 mx-1'>
                 <Input
                     value={value}
                     onChange={(e) => setValue(e.target.value)}
                     className='focus-visible:ring-offset-0 
                                focus-visible:ring-transparent
                                focus-visible::ring-0  
-                               pr-8
                                w-full
-                               md:w-[260px]
-                               
-                              shrink 
+                              shrink-2
             ' />
 
                 {
