@@ -51,7 +51,7 @@ const avatarVariants = cva(
 export function UserProfileImage({ username, isActive, url, className, size, variant }: avatarProps) {
     return (
         <Avatar className={cn(avatarVariants({ variant, size, className }))} >
-            <AvatarImage className="" src={url} alt={"@" + username} />
+            <AvatarImage className={cn(isActive && "ring-2 ring-red-500")} src={url} alt={"@" + username} />
             <AvatarFallback>{username.substring(0, 3)}</AvatarFallback>
         </Avatar>
     )
