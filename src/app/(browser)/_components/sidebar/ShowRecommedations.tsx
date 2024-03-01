@@ -4,7 +4,7 @@ import { Button } from '@/components/ui/button'
 import { User } from '@/db'
 import { cn } from '@/lib/utils'
 import { useSidebar } from '@/store/useSidebar'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { useMediaQuery } from '@react-hook/media-query';
 import { LiveBadge } from './LiveBadge'
 
@@ -13,13 +13,27 @@ export function Reco({ data }: { data: User[] }) {
 
     const isMobile = useMediaQuery('(max-width: 768px)');
     const isWrapped = useSidebar((store) => store.isWrapped)
+    const [hasMounted, setMounted] = useState<boolean>(false)
+
+
+    useEffect(() => {
+        setMounted(true)
+    }, [])
+
+
+    if (!hasMounted) {
+        return <></>
+    }
+
 
 
     return (
         <ul className='flex flex-col items-start gap-4'>
-            <div className={cn('text-sm text-muted-foreground ml-2 hidden  ', !isWrapped && "md:block")} >
-                Recommentations
-            </div>
+            {data.length > 0 &&
+                <div className={cn('text-sm text-muted-foreground ml-2 hidden  ', !isWrapped && "md:block")} >
+                    Recommentations
+                </div>
+            }
 
             {
                 data.map((user) => (

@@ -6,44 +6,30 @@ import {
     DialogContent,
     DialogHeader,
     DialogTitle,
+    DialogTrigger,
 } from "@/components/ui/dialog"
 import { User, db } from "@/db"
 import { users } from "@/db/schema/users"
 import { eq } from "drizzle-orm"
-import { X } from "lucide-react"
-import Link from "next/link"
 import { redirect } from "next/navigation"
+import { UserProfileImage } from "./UserProfileImage"
+import { UpdateUserInfo } from "./UpdateUserInfo"
 
 
-export default async function User({ params }: { params: { userId: string } }) {
-
-    if (!params.userId) {
-        redirect('/')
-        return
-    }
-
-    const user = await db.query.users.findFirst({
-        where(fields, operators) {
-            return operators.eq(fields.id, params.userId)
-        },
-    })
-
-
-    if (!user) {
-        redirect('/')
-        return
-    }
-
-
-
+export function UserInfoButton({ user }: { user: User }) {
     return (
-        <Dialog open >
+        <Dialog >
+            <DialogTrigger asChild>
+                <UserProfileImage
+                    className='size-8'
+                    variant={"default"}
+                    isActive={false}
+                    url={user.image || ""} username={user.username || "shad"}  ></UserProfileImage>
+            </DialogTrigger>
+
             <DialogContent className="sm:max-w-[300px]">
                 <DialogHeader >
                     <DialogTitle className="relative flex" >User Info
-                        <Link href={'/'} className="absolute right-0 top-0" >
-                            <X className="size-5" ></X>
-                        </Link>
                     </DialogTitle>
                 </DialogHeader>
                 <div className="w-full flex gap-2 flex-col items-center">
@@ -55,11 +41,7 @@ export default async function User({ params }: { params: { userId: string } }) {
                     <div>
                         {user.username}
                     </div>
-                    <Button className="w-full" variant={"outline"} type="button">
-                        <Link href={`/user/${params.userId}/settings`} >
-                            Edit
-                        </Link>
-                    </Button>
+                    <UpdateUserInfo user={user} />
                     <form className="w-full" action={async () => {
                         "use server"
                         await signOut()
@@ -70,7 +52,7 @@ export default async function User({ params }: { params: { userId: string } }) {
 
                     <form className="w-full" action={async () => {
                         "use server"
-                        await db.delete(users).where(eq(users.id, params.userId))
+                        await db.delete(users).where(eq(users.id, user.id))
                         redirect('/')
                     }}  >
                         <Button className="w-full" variant={"destructive"} type="submit">Delete Account</Button>

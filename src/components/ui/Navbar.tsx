@@ -5,11 +5,31 @@ import Link from 'next/link'
 import { UserProfileImage } from '../UserProfileImage'
 import { Ghost, Clapperboard, ClapperboardIcon } from 'lucide-react'
 import { SearchBar } from '../SearchBar'
+import { UserInfoButton } from '../UserInfoButton'
+import { User } from '@/db'
 
 export async function Navbar() {
 
     const session = await auth()
-    const isLoggedIn = session ? true : false
+    const userId = session?.user?.id
+
+    let user: (User | null) = null
+
+    if (userId) {
+        const response = await fetch(`http://localhost:3000/api/user/${userId}`, {
+            next: {
+                tags: ['userInfo']
+            }
+        })
+        const data = await response.json()
+        if (response.status == 200) {
+
+            user = data
+            console.log("user data from the route handler")
+            console.log(user)
+        }
+    }
+
 
     return (
         <div className='flex h-16 sticky top-0  w-full z-40 px-3 py-2 justify-between border-b border-black items-center
@@ -29,13 +49,9 @@ export async function Navbar() {
                     <span className='lg:block hidden text-sm' >Dashboard</span>
                 </div>
                 {
-                    isLoggedIn ?
+                    user ?
                         <div className='flex gap-2'>
-                            <Link href={`/user/${session!.user!.id}/`} >
-                                <UserProfileImage
-                                    className='size-8'
-                                    url={session?.user?.image || ""} username={session?.user?.name || "shad"}  ></UserProfileImage>
-                            </Link>
+                            <UserInfoButton user={user} />
                         </div>
                         :
                         <>
