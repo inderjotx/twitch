@@ -35,7 +35,10 @@ export function Reco({ data }: { data: User[] }) {
                             <LiveBadge />
                         </div>
 
-                        <div className='text-[12px] w-full truncate hidden md:block' >{(!isWrapped && !isMobile) && user.username}</div>
+                        {
+                            !isWrapped &&
+                            <div className='text-[12px] w-full truncate hidden md:block' >{(!isMobile) && user.username}</div>
+                        }
 
 
                     </div>

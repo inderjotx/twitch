@@ -1,7 +1,8 @@
-import React from 'react'
+import React, { Suspense } from 'react'
 import { Wrapper } from './wrapper'
 import { getRecommendations } from '@/lib/recommentation'
 import { Reco } from './ShowRecommedations'
+import { SkeletonSideBar } from './SideBarSkeleton'
 
 export async function Sidebar() {
 

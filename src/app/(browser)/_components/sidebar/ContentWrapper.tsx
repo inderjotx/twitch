@@ -9,7 +9,7 @@ export function ContentWrapper({ children }: { children: React.ReactNode }) {
 
     return (
         <div
-            className={cn(isWrapped ? "ml-16" : "md:ml-[200px]")}
+            className={cn("ml-16", isWrapped ? "ml-16" : "md:ml-[200px]")}
         >
             {children}
         </div>

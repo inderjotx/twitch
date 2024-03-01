@@ -1,9 +1,10 @@
 'use client'
 import { cn } from '@/lib/utils'
 import { useSidebar } from '@/store/useSidebar'
-import React from 'react'
 import { ToggleControls } from './toggleControls'
 import { ContentWrapper } from './ContentWrapper'
+import React, { Suspense } from 'react'
+import { SkeletonSideBar } from './SideBarSkeleton'
 
 export function Wrapper({ children }: {
     children: React.ReactNode
