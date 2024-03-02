@@ -42,7 +42,7 @@ export function Reco({ data }: { data: User[] }) {
 
             {
                 data.map((user) => (
-                    <Link key={user.id} href={`/${user.username}`} >
+                    <Link key={user.id} href={`/${user.id}`} >
                         <div key={user.id} className={cn('flex items-center cursor-pointer hover:bg-foreground/5 p-1 px-2 rounded-md  gap-2 ', !isWrapped && "md:w-[180px]", (`/${user.username}` === currentPath && "bg-foreground/5"))} >
                             <div className='relative'>
                                 <UserProfileImage

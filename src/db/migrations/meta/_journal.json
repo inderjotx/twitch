@@ -64,6 +64,20 @@
       "when": 1709357145658,
       "tag": "0008_secret_living_tribunal",
       "breakpoints": true
+    },
+    {
+      "idx": 9,
+      "version": "5",
+      "when": 1709373483613,
+      "tag": "0009_wet_korvac",
+      "breakpoints": true
+    },
+    {
+      "idx": 10,
+      "version": "5",
+      "when": 1709373955701,
+      "tag": "0010_mighty_supreme_intelligence",
+      "breakpoints": true
     }
   ]
 }

@@ -1,0 +1,1 @@
+ALTER TABLE "followers" ALTER COLUMN "id" SET DATA TYPE serial;

@@ -66,8 +66,6 @@ export const verificationTokens = pgTable(
 
 export const followTable = pgTable(
     "followers", {
-
-    id: integer("id").primaryKey(),
     // person who is following 
     followerId: text("followerId").references(() => users.id, { onDelete: "cascade" }),
 
@@ -77,6 +75,7 @@ export const followTable = pgTable(
     ,
     (table) => {
         return {
+            pk: primaryKey({ columns: [table.followerId, table.followingId] }),
             followIndex: index("follow_idx").on(table.followerId),
             follwingIndex: index("follwing_idx").on(table.followingId),
         }
