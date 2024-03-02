@@ -8,6 +8,5 @@ export default async function Home() {
     <div className="">
       {session?.user?.name}
     </div>
-
   )
 }

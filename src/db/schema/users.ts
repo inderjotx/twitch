@@ -3,9 +3,12 @@ import {
     pgTable,
     text,
     primaryKey,
-    integer
+    integer,
+    index
 } from "drizzle-orm/pg-core"
 import type { AdapterAccount } from '@auth/core/adapters'
+import { relations } from "drizzle-orm"
+import { use } from "react"
 
 export const users = pgTable("user", {
     id: text("id").notNull().primaryKey(),
@@ -58,3 +61,52 @@ export const verificationTokens = pgTable(
         compoundKey: primaryKey({ columns: [vt.identifier, vt.token] }),
     })
 )
+
+
+
+export const followTable = pgTable(
+    "followers", {
+
+    id: integer("id").primaryKey(),
+    // person who is following 
+    followerId: text("followerId").references(() => users.id, { onDelete: "cascade" }),
+
+    // person who is being followed 
+    followingId: text("followingId").references(() => users.id, { onDelete: "cascade" })
+}
+    ,
+    (table) => {
+        return {
+            followIndex: index("follow_idx").on(table.followerId),
+            follwingIndex: index("follwing_idx").on(table.followingId),
+        }
+    }
+
+)
+
+
+export const userRfollow = relations(users, ({ many }) => ({
+    followers: many(followTable, { relationName: "followers" }),
+    following: many(followTable, { relationName: "following" })
+})
+)
+
+
+export const followRuser = relations(followTable, ({ one }) => ({
+    followedBy: one(users, {
+        relationName: "followers",
+        fields: [followTable.followerId],
+        references: [users.id]
+    })
+    ,
+    beingFollowed: one(users, {
+        relationName: "following",
+        fields: [followTable.followingId],
+        references: [users.id]
+    })
+    ,
+}))
+
+
+
+

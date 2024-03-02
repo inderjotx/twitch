@@ -1,0 +1,1 @@
+ALTER TABLE "follow" DROP COLUMN IF EXISTS "id";
